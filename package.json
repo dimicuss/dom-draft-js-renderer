@@ -11,5 +11,8 @@
   "bugs": {
     "url": "https://github.com/dimicuss/dom-draft-js-renderer/issues"
   },
-  "homepage": "https://github.com/dimicuss/dom-draft-js-renderer#readme"
+  "homepage": "https://github.com/dimicuss/dom-draft-js-renderer#readme",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
 }
