@@ -6,33 +6,20 @@ function handleRanges(typesSet, ranges) {
     const { offset, length, style, key, decorator } = ranges[i];
 
     for (let j = offset; j < offset + length; j += 1) {
-      let type;
-      const types = typesSet[j];
+    	const types = typesSet[j];
 
-      if (style !== undefined) {
-        type = ['styles', style]
+	    if (types !== undefined) {
+		    key !== undefined && types.push(['entities', key]);
+	      style !== undefined && types.push(['styles', style]);
+	      decorator !== undefined && types.push(['decorators', decorator]);
       }
-
-      if (key !== undefined) {
-        type = ['entities', key];
-      }
-
-      if (decorator !== undefined) {
-        type = ['decorators', decorator];
-      }
-
-      if (type !== undefined) {
-        types.push(type);
-      }
-
-      typesSet[j] = types;
     }
   }
 }
 
 
 function addRange (ranges, name, offset, length) {
-  ranges.push({ offset, length, decorator: name})
+  ranges.push({ offset, length, decorator: name });
 }
 
 
@@ -54,7 +41,7 @@ export default function createTypesSet({ entityRanges = [], inlineStyleRanges = 
   for (let i = 0; i < text.length; i += 1) { typesSet[i] = [] }
 
   handleRanges(typesSet, entityRanges);
-  handleRanges(typesSet, createDecoratorRanges(text, config.decorators))
+  handleRanges(typesSet, createDecoratorRanges(text, config.decorators));
   handleRanges(typesSet, inlineStyleRanges);
 
   return typesSet;

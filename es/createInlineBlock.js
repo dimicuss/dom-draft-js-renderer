@@ -14,11 +14,6 @@ export default function createInlineBlock(range, text, common) {
   const children = ranges.map(nextRange => createInlineBlock(nextRange, text, common));
 
 
-  if (rangeType === undefined) {
-    return document.createTextNode(text.substring(start, end + 1));
-  }
-
-
   if (rangeType === 'styles') {
     return get(config, [rangeType, rangeKey], createSpan)(children, common);
   }
@@ -34,4 +29,7 @@ export default function createInlineBlock(range, text, common) {
   if (rangeType === 'decorators') {
     return get(config, [rangeType, rangeKey, 'render'], createInlineBlock)(children, common, text.substring(start, end + 1));
   }
+
+
+  return document.createTextNode(text.substring(start, end + 1));
 }

@@ -4,7 +4,7 @@ import isPlainObject from 'lodash/isPlainObject';
 
 export default function createElement(name, ...rest) {
   const children = rest.find(isArray) || [];
-  const attributes = rest.find(isPlainObject) || {}
+  const attributes = rest.find(isPlainObject) || {};
 
   const element = document.createElement(name);
 

@@ -6,7 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/dimicuss/dom-draft-js-renderer.git"
   },
-  "author": "",
+  "author": "dimicuss",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dimicuss/dom-draft-js-renderer/issues"

@@ -4,6 +4,6 @@ function setChild(fragment, child) {
 }
 
 
-export default function craeteDocumentFragment(children = []) {
+export default function createDocumentFragment(children = []) {
   return children.reduce(setChild, document.createDocumentFragment());
 }
