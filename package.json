@@ -1,0 +1,15 @@
+{
+  "name": "dom-draft-js-renderer",
+  "version": "1.0.0",
+  "description": "draft-js dom renderer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimicuss/dom-draft-js-renderer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dimicuss/dom-draft-js-renderer/issues"
+  },
+  "homepage": "https://github.com/dimicuss/dom-draft-js-renderer#readme"
+}
