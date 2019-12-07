@@ -1,34 +1,34 @@
 import partial from 'lodash/partial';
 
 
-function handleRanges(typesSet, ranges) {
-  for (let i = 0; i < ranges.length; i += 1) {
-    const { offset, length, style, key, decorator } = ranges[i];
+function handleRange(typesSet, range) {
+	const { offset, length, style, key, decorator } = range;
 
-    for (let j = offset; j < offset + length; j += 1) {
-    	const types = typesSet[j];
-
-	    if (types !== undefined) {
-		    key !== undefined && types.push(['entities', key]);
-	      style !== undefined && types.push(['styles', style]);
-	      decorator !== undefined && types.push(['decorators', decorator]);
-      }
-    }
-  }
+	for (let j = offset; j < offset + length; j += 1) {
+		const types = typesSet[j];
+		
+		if (types !== undefined) {
+			key !== undefined && types.push(['entities', key].join(':'));
+			style !== undefined && types.push(['styles', style].join(':'));
+			decorator !== undefined && types.push(['decorators', decorator].join(':'));
+		}
+	}
+	
+	return typesSet;
 }
 
 
-function addRange (ranges, name, offset, length) {
-  ranges.push({ offset, length, decorator: name });
+function addRange (ranges, decorator, offset, length) {
+  ranges.push({ offset, length, decorator });
 }
 
 
-function createDecoratorRanges(text, symbols) {
+function createDecoratorRanges(text, decorators = {}) {
   const ranges = [];
 
-  for (let name in symbols) {
-    const { strategy } = symbols[name];
-    strategy(text, partial(addRange, ranges, name));
+  for (let decorator in decorators) {
+    const { strategy } = decorators[decorator];
+    strategy(text, partial(addRange, ranges, decorator));
   }
 
   return ranges;
@@ -37,12 +37,15 @@ function createDecoratorRanges(text, symbols) {
 
 export default function createTypesSet({ entityRanges = [], inlineStyleRanges = [], text = '' }, { config }) {
   let typesSet = [];
+  const decoratorRanges = createDecoratorRanges(text, config.decorators);
 
   for (let i = 0; i < text.length; i += 1) { typesSet[i] = [] }
-
-  handleRanges(typesSet, entityRanges);
-  handleRanges(typesSet, createDecoratorRanges(text, config.decorators));
-  handleRanges(typesSet, inlineStyleRanges);
-
+  
+	entityRanges.reduce(handleRange, typesSet);
+	decoratorRanges.reduce(handleRange, typesSet);
+	inlineStyleRanges.reduce(handleRange, typesSet);
+	
+	for (let i = 0; i < text.length; i += 1) { typesSet[i].push('simple') }
+	
   return typesSet;
 }

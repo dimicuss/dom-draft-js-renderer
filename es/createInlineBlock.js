@@ -10,9 +10,9 @@ function createSpan(children) {
 
 export default function createInlineBlock(range, text, common) {
   const { entityMap, config } = common;
-  const { type: [rangeType, rangeKey], ranges, start, end } = range;
+  const { type, ranges, start, end } = range;
   const children = ranges.map(nextRange => createInlineBlock(nextRange, text, common));
-
+  const [rangeType, rangeKey] = type.split(':');
 
   if (rangeType === 'styles') {
     return get(config, [rangeType, rangeKey], createSpan)(children, common);
