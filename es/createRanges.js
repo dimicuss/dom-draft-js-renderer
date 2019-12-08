@@ -16,10 +16,11 @@ export default function createRanges(typesSet = [], depth = 0, start = 0, end = 
 	  previousType = type;
 	}
   
-  return ranges.map(({ type, start, end  }) => ({
-	  type,
-	  start,
-	  end,
-	  ranges: createRanges(typesSet, depth + 1, start, end),
-  }));
+  for (let i = 0; i < ranges.length; i++) {
+  	const range = ranges[i];
+  	const { start, end } = range;
+  	range.ranges = createRanges(typesSet, depth + 1, start, end);
+  }
+  
+  return ranges;
 }

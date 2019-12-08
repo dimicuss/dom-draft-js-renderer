@@ -15,6 +15,11 @@ describe('createRanges testing', () => {
 			length: text.length,
 		};
 		
+		const baseRenderedRange = {
+			start: 0,
+			end: text.length - 1,
+		};
+		
 		const block = {
 			text,
 			inlineStyleRanges: [{ style: 'UNDERLINE', ...baseRange }],
@@ -24,24 +29,20 @@ describe('createRanges testing', () => {
 		const decoratorRange = { decorator: 'BR', ...baseRange };
 		const expectation = [
 			{
+				...baseRenderedRange,
 				type: 'entities:0',
-				start: 0,
-				end: 18,
 				ranges: [
 					{
+						...baseRenderedRange,
 						type: 'decorators:BR',
-						start: 0,
-						end: 18,
 						ranges: [
 							{
+								...baseRenderedRange,
 								type: 'styles:UNDERLINE',
-								start: 0,
-								end: 18,
 								ranges: [
 									{
+										...baseRenderedRange,
 										type: 'simple',
-										start: 0,
-										end: 18,
 										ranges: []
 									}
 								]

@@ -5,12 +5,11 @@ function createAddRange(ranges, decorator) {
 }
 
 
-export default function createDecoratorRanges(text, decorators = {}) {
+export default function createDecoratorRanges(block, decorators = {}) {
 	const ranges = [];
 	
 	for (let decorator in decorators) {
-		const { strategy } = decorators[decorator];
-		strategy(text, createAddRange(ranges, decorator));
+		decorators[decorator].strategy(block.text, createAddRange(ranges, decorator));
 	}
 	
 	return ranges;
