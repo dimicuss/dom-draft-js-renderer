@@ -1,4 +1,4 @@
-export default function createRanges(typesSet = [], depth = 0, start = 0, end = typesSet.length - 1) {
+export default function createTypeRanges(typesSet = [], depth = 0, start = 0, end = typesSet.length - 1) {
 	let ranges = [];
   let previousType = undefined;
 	
@@ -19,7 +19,7 @@ export default function createRanges(typesSet = [], depth = 0, start = 0, end = 
   for (let i = 0; i < ranges.length; i++) {
   	const range = ranges[i];
   	const { start, end } = range;
-  	range.ranges = createRanges(typesSet, depth + 1, start, end);
+  	range.ranges = createTypeRanges(typesSet, depth + 1, start, end);
   }
   
   return ranges;

@@ -24,7 +24,7 @@ export default function createTypesSet({ entityRanges = [], inlineStyleRanges = 
 	decoratorRanges.reduce(handleRange, typesSet);
 	inlineStyleRanges.reduce(handleRange, typesSet);
 	
-	for (let i = 0; i < text.length; i += 1) { typesSet[i].push('simple') }
+	typesSet.forEach((type) => type.push('simple'));
 	
   return typesSet;
 }

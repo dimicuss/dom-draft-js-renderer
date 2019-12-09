@@ -1,11 +1,10 @@
 const draftRenderer = require('../es').default;
-const renderMap  = require('./mocks/renderMap').default;
-const rawContentState  = require('./mocks/rawContentState').default;
+const { input, output, renderMap } = require('./mocks/draftRendererTestMock').default;
 
 
 
 describe('Draft renderer root function', () => {
-	test('Empty block', () => {
-		console.log(draftRenderer(rawContentState, renderMap))
+	test('', () => {
+		expect(draftRenderer(input, renderMap)).toStrictEqual(output);
 	})
 });

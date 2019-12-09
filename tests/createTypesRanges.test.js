@@ -1,10 +1,10 @@
 const createTypesSet = require('../es/createTypesSet').default;
-const createRanges = require('../es/createRanges').default;
+const createTypeRanges = require('../es/createTypeRanges').default;
 
 
-describe('createRanges testing', () => {
+describe('createTypeRanges testing', () => {
 	test('Empty typesSet', ()  => {
-		expect(createRanges([])).toEqual([]);
+		expect(createTypeRanges([])).toEqual([]);
 	});
 	
 	test('Fully decorated text', () => {
@@ -53,6 +53,6 @@ describe('createRanges testing', () => {
 			}
 		];
 		
-		expect(createRanges(createTypesSet(block, [decoratorRange]))).toStrictEqual(expectation);
+		expect(createTypeRanges(createTypesSet(block, [decoratorRange]))).toStrictEqual(expectation);
 	});
 });
