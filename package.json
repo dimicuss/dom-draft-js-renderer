@@ -12,9 +12,6 @@
     "url": "https://github.com/dimicuss/dom-draft-js-renderer/issues"
   },
   "homepage": "https://github.com/dimicuss/dom-draft-js-renderer#readme",
-  "dependencies": {
-    "lodash": "^4.17.15"
-  },
   "scripts": {
     "test": "NODE_ENV=test jest --watch"
   },
@@ -22,6 +19,7 @@
     "@babel/core": "^7.7.5",
     "@babel/preset-env": "^7.7.6",
     "babel-jest": "^24.9.0",
-    "jest": "^24.9.0"
+    "jest": "^24.9.0",
+    "lodash": "^4.17.15"
   }
 }
